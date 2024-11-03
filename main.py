@@ -1,6 +1,9 @@
+from copyreg import dispatch_table
+
 import requests
 from bs4 import BeautifulSoup
 import lxml
+from datetime import datetime, time
 
 
 def get_source_page(url: str | None = None) :
@@ -15,10 +18,24 @@ def get_source_page(url: str | None = None) :
 
 def parse_page(soup: BeautifulSoup) -> str | dict:
     all_trains_blocks = soup.find_all('div', class_='sch-table__row')[1:]
-    print(all_trains_blocks)
-    print(len(all_trains_blocks))
-    print(all_trains_blocks[0])
-    print(all_trains_blocks[-1])
+    result_dict = {}
+
+    for block in all_trains_blocks[0:1]:
+        train_id = block.get("data-train-number")
+        print(train_id)
+
+        dispatch_time = block.find('div', class_='sch-table__time train-from-time').text.strip()
+        dispatch_time = datetime.strptime(dispatch_time,'%H:%M')
+        print(dispatch_time)
+
+        arrive_time = block.find('div', class_='sch-table__time train-to-time').text.strip()
+        arrive_time = datetime.strptime(dispatch_time, '%H:%M')
+        print(arrive_time)
+
+    # print(all_trains_blocks)
+    # print(len(all_trains_blocks))
+    # print(all_trains_blocks[0])
+    # print(all_trains_blocks[-1])
 
 
 def main():
