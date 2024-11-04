@@ -102,7 +102,7 @@ def main():
                 print(f"Доступны места на поезд в {train_info[key]['dispatch_time']} \n https://pass.rw.by/ru/route/?from=%D0%91%D0%B5%D1%80%D1%91%D0%B7%D0%B0&from_exp=2100003&from_esr=134116&to=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA&to_exp=2100000&to_esr=140210&front_date=10+%D0%BD%D0%BE%D1%8F.+2024&date=2024-11-10",end='\n\n\n')
 
 
-        time.sleep(10)
+        time.sleep(120)
 
 
 if __name__ == '__main__':
